@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(HomePage());
+import 'HomePage.dart';
 
-class HomePage extends StatefulWidget {
-  @override
-  _HomePageState createState() => _HomePageState();
-}
+void main() => runApp(MyApp());
 
-class _HomePageState extends State<HomePage> {
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.white,
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: HomePage(),
     );
   }
 }
