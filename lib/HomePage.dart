@@ -19,12 +19,31 @@ class _HomePageState extends State<HomePage> {
 }
 
 Widget banner() {
-  return Container(
-    height: 300,
-    decoration: BoxDecoration(
-        gradient: LinearGradient(
+  return Stack(
+    children: <Widget>[
+      Container(
+        alignment: AlignmentDirectional.center,
+        height: 300,
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
             begin: Alignment.topRight,
             end: Alignment.bottomLeft,
-            colors: [Colors.green, Colors.cyan[800]])),
+            colors: [Colors.green, Colors.cyan[800]],
+          ),
+        ),
+        child: image(),
+      ),
+    ],
+  );
+}
+
+Widget image() {
+  return CircleAvatar(
+    backgroundColor: Colors.white,
+    radius: 70.0,
+    child: CircleAvatar(
+      backgroundColor: Colors.green,
+      radius: 66.0,
+    ),
   );
 }
