@@ -35,7 +35,7 @@ Widget banner() {
           children: <Widget>[
             image(),
             nameTitle(),
-            listIcons(),
+            // listIcons(),
           ],
         ),
       ),
@@ -87,10 +87,7 @@ Widget buildPageView() {
       Container(
         color: Colors.white,
         child: Column(
-          children: <Widget>[
-            banner(),
-            bio(),
-          ],
+          children: <Widget>[banner(), bio(), skills()],
         ),
       ),
       Container(
@@ -107,11 +104,11 @@ Widget bio() {
   return Column(
     children: <Widget>[
       Padding(
-        padding: const EdgeInsets.all(20.0),
+        padding: const EdgeInsets.only(left: 20.0, right: 20.0, top: 20),
         child: Row(
           children: <Widget>[
             Text(
-              'Bio',
+              'About Lucas',
               style: TextStyle(
                 color: Colors.blueGrey[800],
                 fontSize: 25,
@@ -121,13 +118,14 @@ Widget bio() {
           ],
         ),
       ),
+      Divider(),
       Padding(
         padding: const EdgeInsets.only(left: 20.0, right: 20),
         child: Container(
           child: Text(
             'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.',
             style: TextStyle(
-              color: Colors.blueGrey,
+              color: Colors.blueGrey[800],
               fontSize: 15,
               decoration: TextDecoration.none,
             ),
@@ -138,18 +136,72 @@ Widget bio() {
   );
 }
 
+Widget skills() {
+  return Column(
+    children: <Widget>[
+      Padding(
+        padding: const EdgeInsets.only(left: 20.0, right: 20.0, top: 20),
+        child: Row(
+          children: <Widget>[
+            Text(
+              'Skills',
+              style: TextStyle(
+                color: Colors.blueGrey[800],
+                fontSize: 25,
+                decoration: TextDecoration.none,
+              ),
+            ),
+          ],
+        ),
+      ),
+      Divider(),
+      Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          chipLabel('Dart', Colors.greenAccent),
+          chipLabel('Flutter', Colors.greenAccent),
+          chipLabel('React', Colors.greenAccent[400]),
+        ],
+      ),
+      Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          chipLabel('JavaScript', Colors.greenAccent[400]),
+          chipLabel('HTML + CSS', Colors.greenAccent[100]),
+        ],
+      ),
+      Column(
+        children: <Widget>[],
+      ),
+    ],
+  );
+}
+
+Widget chipLabel(String labelName, Color colorData) {
+  return Padding(
+    padding: const EdgeInsets.all(8.0),
+    child: Chip(
+      label: Text(labelName),
+      backgroundColor: colorData,
+    ),
+  );
+}
+
 Widget image() {
-  return CircleAvatar(
-    backgroundColor: Colors.white,
-    radius: 70.0,
-    child: Container(
-      width: 190.0,
-      height: 190.0,
-      decoration: new BoxDecoration(
-        shape: BoxShape.circle,
-        image: new DecorationImage(
-          fit: BoxFit.fill,
-          image: AssetImage('assets/images/image.jpg'),
+  return Padding(
+    padding: const EdgeInsets.only(top: 50.0),
+    child: CircleAvatar(
+      backgroundColor: Colors.white,
+      radius: 70.0,
+      child: Container(
+        width: 190.0,
+        height: 190.0,
+        decoration: new BoxDecoration(
+          shape: BoxShape.circle,
+          image: new DecorationImage(
+            fit: BoxFit.fill,
+            image: AssetImage('assets/images/image.jpg'),
+          ),
         ),
       ),
     ),
