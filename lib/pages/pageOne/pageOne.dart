@@ -95,7 +95,8 @@ Widget skills() {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           chipLabel('JavaScript', Colors.greenAccent[400]),
-          chipLabel('HTML + CSS', Colors.greenAccent[100]),
+          chipLabel('HTML + CSS', Colors.greenAccent[400]),
+          chipLabel('C#', Colors.greenAccent[100]),
         ],
       ),
       Column(
