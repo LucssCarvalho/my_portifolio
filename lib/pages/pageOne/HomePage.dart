@@ -9,8 +9,8 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
+    return SafeArea(
+      child: Container(
           child: Column(
         children: <Widget>[banner(), bio(), skills()],
       )),

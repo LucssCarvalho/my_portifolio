@@ -6,7 +6,7 @@ Widget banner() {
     children: <Widget>[
       Container(
         alignment: AlignmentDirectional.center,
-        height: 300,
+        height: 280,
         decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topRight,
@@ -18,9 +18,8 @@ Widget banner() {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             image(),
-
             nameTitle(),
-            // listIcons(),
+            listIcons(),
           ],
         ),
       ),
@@ -118,7 +117,7 @@ Widget chipLabel(String labelName, Color colorData) {
 
 Widget image() {
   return Padding(
-    padding: const EdgeInsets.only(top: 50.0),
+    padding: const EdgeInsets.only(top: 10.0),
     child: CircleAvatar(
       backgroundColor: Colors.white,
       radius: 70.0,
@@ -150,11 +149,12 @@ Widget iconSocial(MdiIconData iconName) {
 
 Widget listIcons() {
   return Row(
-    crossAxisAlignment: CrossAxisAlignment.center,
     mainAxisAlignment: MainAxisAlignment.center,
     children: <Widget>[
-      iconSocial(Mdi.githubBox),
-      iconSocial(Mdi.instagram),
+      Text(
+        'Developer',
+        style: TextStyle(color: Colors.grey[100]),
+      )
     ],
   );
 }
