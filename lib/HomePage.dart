@@ -46,17 +46,11 @@ pageOne() {
 pageTwo() {
   return Container(
     color: Colors.white,
-    child: Column(
-      children: <Widget>[banner(), bio(), skills()],
-    ),
   );
 }
 
 pageThree() {
   return Container(
     color: Colors.white,
-    child: Column(
-      children: <Widget>[banner(), bio(), skills()],
-    ),
   );
 }

@@ -1,6 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:mdi/mdi.dart';
 
+Widget banner() {
+  return Stack(
+    children: <Widget>[
+      Container(
+        alignment: AlignmentDirectional.center,
+        height: 300,
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topRight,
+            end: Alignment.bottomLeft,
+            colors: [Colors.green, Colors.cyan[800]],
+          ),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            image(),
+
+            nameTitle(),
+            // listIcons(),
+          ],
+        ),
+      ),
+    ],
+  );
+}
+
 Widget bio() {
   return Column(
     children: <Widget>[
@@ -59,8 +86,8 @@ Widget skills() {
       Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          chipLabel('Dart', Colors.greenAccent),
-          chipLabel('Flutter', Colors.greenAccent),
+          chipLabel('Dart', Colors.greenAccent[700]),
+          chipLabel('Flutter', Colors.greenAccent[700]),
           chipLabel('React', Colors.greenAccent[400]),
         ],
       ),
@@ -106,32 +133,6 @@ Widget image() {
         ),
       ),
     ),
-  );
-}
-
-Widget banner() {
-  return Stack(
-    children: <Widget>[
-      Container(
-        alignment: AlignmentDirectional.center,
-        height: 300,
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topRight,
-            end: Alignment.bottomLeft,
-            colors: [Colors.green, Colors.cyan[800]],
-          ),
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            image(),
-            nameTitle(),
-            // listIcons(),
-          ],
-        ),
-      ),
-    ],
   );
 }
 
