@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:my_portifolio/pages/PageThree/PageThree.dart';
 import 'package:my_portifolio/pages/pageOne/HomePage.dart';
 import 'package:my_portifolio/pages/pageTwo/PageTwo.dart';
@@ -9,10 +8,6 @@ void main() => runApp(MyApp());
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-      statusBarColor: Colors.green,
-    ));
-
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
@@ -28,7 +23,7 @@ class Tabbar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 3,
+      length: 2,
       child: Scaffold(
         bottomNavigationBar: TabBar(
           tabs: [
@@ -64,22 +59,6 @@ class Tabbar extends StatelessWidget {
                 ),
               ),
             ),
-            Tab(
-              child: Container(
-                child: Column(
-                  children: <Widget>[
-                    Icon(
-                      Icons.contact_phone,
-                      size: 25,
-                    ),
-                    Text(
-                      'My contacts',
-                      style: TextStyle(fontSize: 13),
-                    )
-                  ],
-                ),
-              ),
-            ),
           ],
           indicatorWeight: 2,
           labelStyle: TextStyle(fontSize: 10),
@@ -87,7 +66,7 @@ class Tabbar extends StatelessWidget {
           labelColor: Colors.greenAccent[700],
           indicatorColor: Colors.transparent,
         ),
-        body: TabBarView(children: [HomePage(), PageTwo(), PageThree()]),
+        body: TabBarView(children: [HomePage(), PageTwo()]),
       ),
     );
   }
