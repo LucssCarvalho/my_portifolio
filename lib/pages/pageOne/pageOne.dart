@@ -151,11 +151,39 @@ Widget listIcons() {
   return Row(
     mainAxisAlignment: MainAxisAlignment.center,
     children: <Widget>[
-      Text(
-        'Developer',
-        style: TextStyle(color: Colors.grey[100]),
-      )
+      InkWell(
+        onTap: () {
+          _showModalSheet();
+        },
+        child: Container(
+          decoration: BoxDecoration(
+            color: Colors.greenAccent,
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              'Contacts',
+            ),
+          ),
+        ),
+      ),
     ],
+  );
+}
+
+void _showModalSheet() {
+  return modalShetSimulatePayment();
+}
+
+modalShetSimulatePayment() {
+  return showModalBottomSheet(
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.vertical(
+        top: Radius.circular(25.0),
+      ),
+    ),
+    isScrollControlled: true,
+    builder: (context) => Container(),
   );
 }
 
