@@ -12,7 +12,7 @@ class _HomePageState extends State<HomePage> {
     return SafeArea(
       child: Container(
           child: Column(
-        children: <Widget>[banner(), bio(), skills()],
+        children: <Widget>[banner(context), bio(), skills()],
       )),
     );
   }
