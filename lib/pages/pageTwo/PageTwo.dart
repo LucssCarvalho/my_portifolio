@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class PageTwo extends StatefulWidget {
   @override
@@ -8,42 +9,40 @@ class PageTwo extends StatefulWidget {
 class _PageTwoState extends State<PageTwo> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        alignment: AlignmentDirectional.center,
-        child: SafeArea(
-          child: ListView(
-            padding: const EdgeInsets.all(10.0),
-            children: <Widget>[
-              Card(
-                child: CustomListItemTwo(
-                  thumbnail: Container(
-                    decoration: const BoxDecoration(color: Colors.green),
-                  ),
-                  title: 'projeto 1',
-                  subtitle:
-                      'Flutter continues to improve and expand its horizons.'
-                      'This text should max out at two lines and clip',
-                  author: 'Lucas Carvalho',
-                  publishDate: 'Jan 13',
-                  readDuration: '300 mins',
+    return SafeArea(
+      child: StreamBuilder(
+        stream: Firestore.instance.collection('projects').snapshots(),
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
+          if (snapshot.hasError) {
+            return Text('Error: ${snapshot.error}');
+          }
+          switch (snapshot.connectionState) {
+            case ConnectionState.waiting:
+              return CircularProgressIndicator();
+              break;
+            default:
+              return Center(
+                child: ListView(
+                  padding: const EdgeInsets.all(10.0),
+                  children: snapshot.data.documents
+                      .map<Widget>((DocumentSnapshot doc) {
+                    return Card(
+                      child: CustomListItemTwo(
+                        thumbnail: Container(
+                          decoration: const BoxDecoration(color: Colors.green),
+                        ),
+                        title: doc.data['title'],
+                        subtitle: doc.data['bio'],
+                        author: doc.data['author'],
+                        publishDate: doc.data['publishDate'],
+                        readDuration: doc.data['readDuration'],
+                      ),
+                    );
+                  }).toList(),
                 ),
-              ),
-              Card(
-                child: CustomListItemTwo(
-                  thumbnail: Container(
-                    decoration: const BoxDecoration(color: Colors.greenAccent),
-                  ),
-                  title: 'projeto 2',
-                  subtitle: 'Flutter once again improves and makes updates.',
-                  author: 'Lucas Carvalho',
-                  publishDate: 'Feb 26',
-                  readDuration: '520 mins',
-                ),
-              ),
-            ],
-          ),
-        ),
+              );
+          }
+        },
       ),
     );
   }
