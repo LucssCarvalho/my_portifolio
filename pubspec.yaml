@@ -28,3 +28,5 @@ flutter:
 
   assets:
    - assets/images/image.jpg
+   - assets/images/app_portifolio.png
+   - assets/images/card.png
