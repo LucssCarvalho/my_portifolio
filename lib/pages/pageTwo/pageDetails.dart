@@ -6,6 +6,7 @@ class PageDetails extends StatefulWidget {
   final String author;
   final String publishDate;
   final String readDuration;
+  final String colorCard;
 
   PageDetails(
     this.title,
@@ -13,6 +14,7 @@ class PageDetails extends StatefulWidget {
     this.author,
     this.publishDate,
     this.readDuration,
+    this.colorCard,
   );
 
   @override
@@ -71,8 +73,7 @@ class _PageDetailsState extends State<PageDetails> {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15),
                 image: DecorationImage(
-                    image: NetworkImage(
-                        'https://www.hostinger.com.br/tutoriais/wp-content/uploads/sites/12/2018/05/Como-mudar-URLs-no-WordPress-no-banco-de-dados-MySQL-usando-phpMyAdmin.png'),
+                    image: AssetImage('assets/images/app_portifolio.png'),
                     fit: BoxFit.cover),
               ),
             ),
