@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:my_portifolio/helper/colorList.dart';
 import 'package:my_portifolio/pages/pageTwo/pageDetails.dart';
 
 class PageTwo extends StatefulWidget {
@@ -37,21 +38,23 @@ class _PageTwoState extends State<PageTwo> {
                             doc.data['author'],
                             doc.data['publishDate'],
                             doc.data['readDuration'],
+                            doc.data['colorCard'],
                           ),
                         ),
                       ),
-                      child: Card(
-                        child: CustomListItemTwo(
-                          thumbnail: Container(
-                            decoration:
-                                const BoxDecoration(color: Colors.green),
+                      child: CustomListItemTwo(
+                        thumbnail: Container(
+                          decoration: const BoxDecoration(
+                            image: DecorationImage(
+                                image: NetworkImage(''), fit: BoxFit.cover),
                           ),
-                          title: doc.data['title'],
-                          subtitle: doc.data['bio'],
-                          author: doc.data['author'],
-                          publishDate: doc.data['publishDate'],
-                          readDuration: doc.data['readDuration'],
                         ),
+                        title: doc.data['title'],
+                        subtitle: doc.data['bio'],
+                        author: doc.data['author'],
+                        publishDate: doc.data['publishDate'],
+                        readDuration: doc.data['readDuration'],
+                        colorCard: doc.data['colorCard'],
                       ),
                     );
                   }).toList(),
@@ -60,81 +63,6 @@ class _PageTwoState extends State<PageTwo> {
           }
         },
       ),
-    );
-  }
-}
-
-class _ArticleDescription extends StatelessWidget {
-  _ArticleDescription({
-    Key key,
-    this.title,
-    this.subtitle,
-    this.author,
-    this.publishDate,
-    this.readDuration,
-  }) : super(key: key);
-
-  final String title;
-  final String subtitle;
-  final String author;
-  final String publishDate;
-  final String readDuration;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        Expanded(
-          flex: 2,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Text(
-                '$title',
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const Padding(padding: EdgeInsets.only(bottom: 2.0)),
-              Text(
-                '$subtitle',
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-                style: const TextStyle(
-                  fontSize: 12.0,
-                  color: Colors.black54,
-                ),
-              ),
-            ],
-          ),
-        ),
-        Expanded(
-          flex: 1,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: <Widget>[
-              Text(
-                '$author',
-                style: const TextStyle(
-                  fontSize: 12.0,
-                  color: Colors.black87,
-                ),
-              ),
-              Text(
-                '$publishDate · $readDuration ★',
-                style: const TextStyle(
-                  fontSize: 12.0,
-                  color: Colors.black54,
-                ),
-              ),
-            ],
-          ),
-        ),
-      ],
     );
   }
 }
@@ -148,6 +76,7 @@ class CustomListItemTwo extends StatelessWidget {
     this.author,
     this.publishDate,
     this.readDuration,
+    this.colorCard,
   }) : super(key: key);
 
   final Widget thumbnail;
@@ -156,33 +85,44 @@ class CustomListItemTwo extends StatelessWidget {
   final String author;
   final String publishDate;
   final String readDuration;
+  final String colorCard;
 
   @override
   Widget build(BuildContext context) {
+    final Color color = HexColor.fromHex(colorCard);
+
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10.0),
-      child: SizedBox(
-        height: 100,
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            AspectRatio(
-              aspectRatio: 1.0,
-              child: thumbnail,
-            ),
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.fromLTRB(20.0, 0.0, 2.0, 0.0),
-                child: _ArticleDescription(
-                  title: title,
-                  subtitle: subtitle,
-                  author: author,
-                  publishDate: publishDate,
-                  readDuration: readDuration,
+      child: Container(
+        decoration: BoxDecoration(
+          color: color,
+          image: DecorationImage(
+            colorFilter: new ColorFilter.mode(
+                Colors.black.withOpacity(0.2), BlendMode.dstATop),
+            image: AssetImage('assets/images/card.png'),
+            fit: BoxFit.cover,
+          ),
+          borderRadius: BorderRadius.circular(15),
+        ),
+        height: 170,
+        child: Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Text(
+                title,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 30,
                 ),
               ),
-            )
-          ],
+              Text(
+                subtitle,
+                style: TextStyle(color: Colors.white),
+              ),
+            ],
+          ),
         ),
       ),
     );
