@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:my_portifolio/pages/pageTwo/pageDetails.dart';
 
 class PageTwo extends StatefulWidget {
   @override
@@ -26,16 +27,31 @@ class _PageTwoState extends State<PageTwo> {
                   padding: const EdgeInsets.all(10.0),
                   children: snapshot.data.documents
                       .map<Widget>((DocumentSnapshot doc) {
-                    return Card(
-                      child: CustomListItemTwo(
-                        thumbnail: Container(
-                          decoration: const BoxDecoration(color: Colors.green),
+                    return GestureDetector(
+                      onTap: () => Navigator.push(
+                        context,
+                        new MaterialPageRoute(
+                          builder: (context) => PageDetails(
+                            doc.data['title'],
+                            doc.data['bio'],
+                            doc.data['author'],
+                            doc.data['publishDate'],
+                            doc.data['readDuration'],
+                          ),
                         ),
-                        title: doc.data['title'],
-                        subtitle: doc.data['bio'],
-                        author: doc.data['author'],
-                        publishDate: doc.data['publishDate'],
-                        readDuration: doc.data['readDuration'],
+                      ),
+                      child: Card(
+                        child: CustomListItemTwo(
+                          thumbnail: Container(
+                            decoration:
+                                const BoxDecoration(color: Colors.green),
+                          ),
+                          title: doc.data['title'],
+                          subtitle: doc.data['bio'],
+                          author: doc.data['author'],
+                          publishDate: doc.data['publishDate'],
+                          readDuration: doc.data['readDuration'],
+                        ),
                       ),
                     );
                   }).toList(),
