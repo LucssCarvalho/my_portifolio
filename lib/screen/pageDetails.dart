@@ -64,22 +64,25 @@ class _PageDetailsState extends State<PageDetails> {
                         );
                       }),
                 ),
-                Row(
-                  children: <Widget>[
-                    IconButton(
-                      icon: Icon(
-                        Icons.arrow_back,
-                        color: Colors.green,
+                InkWell(
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                  child: Row(
+                    children: <Widget>[
+                      IconButton(
+                        icon: Icon(
+                          Icons.arrow_back,
+                          color: Colors.green,
+                        ),
+                        onPressed: () {},
                       ),
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                    ),
-                    Text(
-                      'Voltar',
-                      style: TextStyle(color: Colors.green),
-                    )
-                  ],
+                      Text(
+                        'Voltar',
+                        style: TextStyle(color: Colors.green),
+                      )
+                    ],
+                  ),
                 ),
               ],
             ),
