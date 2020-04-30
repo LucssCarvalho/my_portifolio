@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:my_portifolio/pages/pageOne/HomePage.dart';
-import 'package:my_portifolio/pages/pageTwo/PageTwo.dart';
+
+import 'package:my_portifolio/screen/my_page_screen.dart';
+import 'package:my_portifolio/screen/my_projets_screen.dart';
 
 void main() => runApp(MyApp());
 
