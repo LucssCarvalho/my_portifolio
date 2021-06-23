@@ -1,78 +1,15 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'app_module.dart';
 
-import 'package:my_portifolio/screen/my_page_screen.dart';
-import 'package:my_portifolio/screen/my_projets_screen.dart';
-
-void main() => runApp(MyApp());
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-      statusBarColor: Colors.green,
-    ));
-
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.green,
-      ),
-      home: Tabbar(),
-    );
-  }
-}
-
-class Tabbar extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 2,
-      child: Scaffold(
-        bottomNavigationBar: TabBar(
-          tabs: [
-            Tab(
-              child: Container(
-                child: Column(
-                  children: <Widget>[
-                    Icon(
-                      Icons.person,
-                      size: 25,
-                    ),
-                    Text(
-                      'My Page',
-                      style: TextStyle(fontSize: 13),
-                    )
-                  ],
-                ),
-              ),
-            ),
-            Tab(
-              child: Container(
-                child: Column(
-                  children: <Widget>[
-                    Icon(
-                      Icons.work,
-                      size: 25,
-                    ),
-                    Text(
-                      'My projects',
-                      style: TextStyle(fontSize: 13),
-                    )
-                  ],
-                ),
-              ),
-            ),
-          ],
-          indicatorWeight: 2,
-          labelStyle: TextStyle(fontSize: 10),
-          unselectedLabelColor: Colors.grey[800],
-          labelColor: Colors.greenAccent[700],
-          indicatorColor: Colors.transparent,
-        ),
-        body: TabBarView(children: [HomePage(), PageTwo()]),
-      ),
-    );
-  }
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp().then((value) {
+    FirebaseFirestore.instance.settings = Settings(persistenceEnabled: false);
+  });
+  runApp(ModularApp(
+    module: AppModule(),
+  ));
 }

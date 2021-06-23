@@ -40,7 +40,7 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId "com.carvalho.my_portifolio"
+        applicationId "com.carvalhodev.carvalhoapp"
         multiDexEnabled true
         minSdkVersion 16
         targetSdkVersion 28
