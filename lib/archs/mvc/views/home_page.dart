@@ -1,8 +1,8 @@
-import 'package:carvalho_app/app/modules/home/home_controller.dart';
-import 'package:carvalho_app/models/profile.dart';
+import 'package:carvalho_app/archs/mvc/controllers/home_controller.dart';
+import 'package:carvalho_app/archs/mvc/models/profile.dart';
+import 'package:carvalho_app/archs/mvc/utils/constUrls.dart';
 import 'package:flutter/material.dart';
 import 'package:mdi/mdi.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -10,19 +10,22 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final homeController = HomeController();
+  HomeController homeController = HomeController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-          child: Column(
-        children: <Widget>[
-          _bannerProfile(context),
-          bio(),
-          skills(),
-        ],
-      )),
+      body: SingleChildScrollView(
+        child: Container(
+            child: Column(
+          children: <Widget>[
+            _bannerProfile(context),
+            _bio(),
+            Divider(),
+            _skills(),
+          ],
+        )),
+      ),
     );
   }
 
@@ -52,7 +55,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget bio() {
+  Widget _bio() {
     return Column(
       children: <Widget>[
         Padding(
@@ -60,7 +63,7 @@ class _HomePageState extends State<HomePage> {
           child: Row(
             children: <Widget>[
               Text(
-                'Sobre Lucas',
+                'Sobre',
                 style: TextStyle(
                   color: Colors.blueGrey[800],
                   fontSize: 25,
@@ -70,36 +73,28 @@ class _HomePageState extends State<HomePage> {
             ],
           ),
         ),
-        Divider(),
-        FutureBuilder<Profile>(
-            future: homeController.getFirebaseProfile(),
-            builder: (context, snapshot) {
-              if (!snapshot.hasData) {
-                return Center(
-                  child: CircularProgressIndicator(),
-                );
-              } else {
-                return Text(snapshot.data.title);
-              }
-            }),
         Padding(
-          padding: const EdgeInsets.only(left: 20.0, right: 20),
-          child: Container(
-            child: Text(
-              '',
-              style: TextStyle(
-                color: Colors.blueGrey[800],
-                fontSize: 15,
-                decoration: TextDecoration.none,
-              ),
-            ),
-          ),
+          padding: const EdgeInsets.only(top: 10.0),
+          child: FutureBuilder<Profile>(
+              // future: homeController.getFirebaseProfile(),
+              builder: (context, snapshot) {
+            if (!snapshot.hasData) {
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            } else {
+              return Padding(
+                padding: const EdgeInsets.only(left: 20.0, right: 20),
+                child: Text(snapshot.data.descript),
+              );
+            }
+          }),
         ),
       ],
     );
   }
 
-  Widget skills() {
+  Widget _skills() {
     return Column(
       children: <Widget>[
         Padding(
@@ -117,7 +112,6 @@ class _HomePageState extends State<HomePage> {
             ],
           ),
         ),
-        Divider(),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
@@ -153,7 +147,7 @@ class _HomePageState extends State<HomePage> {
 
   Widget _image() {
     return Padding(
-      padding: const EdgeInsets.only(top: 10.0),
+      padding: const EdgeInsets.only(top: 25.0),
       child: CircleAvatar(
         backgroundColor: Colors.white,
         radius: 70.0,
@@ -189,7 +183,7 @@ class _HomePageState extends State<HomePage> {
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
-                  'Contacts',
+                  'Contatos',
                 ),
               ),
             ),
@@ -243,8 +237,7 @@ class _HomePageState extends State<HomePage> {
                       padding: const EdgeInsets.all(8.0),
                       child: InkWell(
                         onTap: () {
-                          homeController
-                              .launchURL('https://github.com/LucssCarvalho');
+                          homeController.launchURL(Urls.GIT);
                         },
                         child: Container(
                           height: 60,
@@ -268,33 +261,7 @@ class _HomePageState extends State<HomePage> {
                       padding: const EdgeInsets.all(8.0),
                       child: InkWell(
                         onTap: () {
-                          homeController.launchURL(
-                              'https://api.whatsapp.com/send?phone=5511989191313&text=Hi%20Lucas%2C%20tell%20me%20about%20yourself');
-                        },
-                        child: Container(
-                          height: 60,
-                          width: 60,
-                          decoration: BoxDecoration(
-                            color: Colors.green,
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Icon(
-                              Mdi.whatsapp,
-                              color: Colors.white,
-                              size: 40,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: InkWell(
-                        onTap: () {
-                          homeController.launchURL(
-                              'https://www.linkedin.com/in/lucas-carvalho-193450117/');
+                          homeController.launchURL(Urls.LINKEDIN);
                         },
                         child: Container(
                           height: 60,
@@ -318,8 +285,7 @@ class _HomePageState extends State<HomePage> {
                       padding: const EdgeInsets.all(8.0),
                       child: InkWell(
                         onTap: () {
-                          homeController.launchURL(
-                              'https://www.instagram.com/dev_start/');
+                          homeController.launchURL(Urls.INSTAGRAM);
                         },
                         child: Container(
                           alignment: AlignmentDirectional.center,

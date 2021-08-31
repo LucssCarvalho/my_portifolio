@@ -8,20 +8,12 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:188962225839:android:c95f6d5112f0804ba19e5a",
+        "mobilesdk_app_id": "1:188962225839:android:094b2bd111614f9ba19e5a",
         "android_client_info": {
-          "package_name": "com.carvalho.my_portifolio"
+          "package_name": "com.carvalhodev.carvalhoapp"
         }
       },
       "oauth_client": [
-        {
-          "client_id": "188962225839-7bqth1nck8it8v134fs91ah600mjl32m.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.carvalho.my_portifolio",
-            "certificate_hash": "214062f4e222e03db4a777c2a5b3566ed58344e9"
-          }
-        },
         {
           "client_id": "188962225839-n01fqh7ai3fj47c0mr3dkvsklv2lh674.apps.googleusercontent.com",
           "client_type": 3

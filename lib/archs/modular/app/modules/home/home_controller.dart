@@ -1,4 +1,4 @@
-import 'package:carvalho_app/models/profile.dart';
+import 'package:carvalho_app/archs/modular/models/profile.dart';
 import 'package:mobx/mobx.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:url_launcher/url_launcher.dart';
